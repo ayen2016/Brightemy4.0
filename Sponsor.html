@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- title and favicon -->
+
+    <title>Brightemy | Sponsor a Student to take a course at Brightemy.</title> 
+    <link rel="icon" type="favicon" href="img/Brightemy-favicon.png">
+    <meta name="description" content="Sponsor a student at Brightemy to help them take a course and enhance their skills. Your support can make a difference in their career development.">
+    <meta name="keywords" content="Brightemy, sponsor a student, Help a student, courses, career development, skills enhancement, online learning, professional growth">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Brightemy Team">
+    <link rel="canonical" href="https://www.brightemy.com/">
+    <meta name="robots" content="index, follow">
+    <meta charset="UTF-8">
+
+
+<!-- title and favicon -->
+
+    <link rel="stylesheet" href="sponsor.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+
+
+     
+  <!--Google tag for connecting google tag manager start -->
+    
+   <!-- Google tag (gtag.js) -->
+   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EYYN1LETTZ"></script>
+   <script>
+   window.dataLayer = window.dataLayer || [];
+   function gtag(){dataLayer.push(arguments);}
+   gtag('js', new Date());
+
+   gtag('config', 'G-EYYN1LETTZ');
+   </script>
+   
+   <!--Google tag for connecting google tag manager stop -->
+
+
+
+</head>
+<body>
+    
+
+
+<!-- Navbar start -->
+
+
+<nav class="navbar">
+    <div class="logo">  
+      <a href="index.html"> <img src="img/Brightemy Logo.png" alt="Brightemy Logo. Brightemy provides students educational support and help them learn valuable skills related to IT." />  </a>   
+    </div>
+    
+    <!-- Search Container -->
+    <div class="search-container" id="search-container">
+        <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        <button class="search-button" id="search-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </button>
+        <div class="search-results" id="search-results"></div>
+    </div>
+    
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Courses.html">Courses</a></li>
+      <li><a href="Partners.html">Partners</a></li>
+      <li><a href="Sponsor.html">Sponsor</a></li>
+      <li><a href="About-Brightemy.html">About</a></li>
+      <li><a href="Blog.html">Blog</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+</nav>
+<!-- Navbar script finish -->
+
+<script>
+  // Hamburger menu functionality
+ const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+  searchResults.style.display = 'none'; // Close search when hamburger is clicked
+});
+
+// Search functionality
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+const searchButton = document.getElementById('search-button');
+
+// Navigation data
+const navData = [
+  { "title": "Home", "link": "index.html" },
+  { "title": "Course", "link": "Courses.html" },
+  { "title": "Partners", "link": "Partners.html" },
+  { "title": "About", "link": "About-Brightemy.html" },
+  { "title": "Blog", "link": "Blog.html" },
+  { "title": "Contact", "link": "Contact.html" },
+  { "title": "Sponsor", "link": "Sponsor.html" },
+  { "title": "Web Development", "link": "Web-Development-Course.html" },
+  { "title": "Cyber Security & Online Safety", "link": "Cyber-Security-&-Online-Saftey-Course.html" },
+  { "title": "Microsoft Office 365", "link": "Microsoft-Office-365-Course.html" },
+  { "title": "Graphic Design", "link": "Graphic-Design-Course.html" },
+  { "title": "Digital Marketing", "link": "Digital-Marketing-Course.html" },
+  { "title": "Video Editing", "link": "Video-Editing-Course.html" },
+  { "title": "Privacy Policy", "link": "Privacy-Policy.html" },
+  { "title": "Terms & Conditions", "link": "Terms-&-Conditions.html" }
+];
+
+// Function to perform search and return results
+function getSearchResults(query) {
+  if (query === '') {
+    return [];
+  }
+  
+  return navData.filter(item => 
+    item.title.toLowerCase().includes(query)
+  );
+}
+
+// Function to display search results
+function displaySearchResults(results) {
+  if (results.length > 0) {
+    searchResults.innerHTML = results
+      .map(item => `<div class="search-result-item" data-link="${item.link}">${item.title}</div>`)
+      .join('');
+    searchResults.style.display = 'block';
+    
+    // Add click event to search result items
+    document.querySelectorAll('.search-result-item').forEach(item => {
+      item.addEventListener('click', function() {
+        window.location.href = this.getAttribute('data-link');
+      });
+    });
+  } else {
+    searchResults.innerHTML = '<div class="search-result-item">No results found</div>';
+    searchResults.style.display = 'block';
+  }
+}
+
+// Function to handle search input (display results only)
+function handleSearchInput() {
+  const query = searchInput.value.toLowerCase().trim();
+  
+  if (query === '') {
+    searchResults.style.display = 'none';
+    return;
+  }
+  
+  const results = getSearchResults(query);
+  displaySearchResults(results);
+}
+
+// Function to handle search button click (navigate to first result)
+function handleSearchButtonClick() {
+  const query = searchInput.value.toLowerCase().trim();
+  
+  if (query === '') {
+    return;
+  }
+  
+  const results = getSearchResults(query);
+  
+  if (results.length > 0) {
+    // Navigate to the first search result
+    window.location.href = results[0].link;
+  } else {
+    // Display no results message
+    displaySearchResults(results);
+  }
+}
+
+// Event listeners
+searchInput.addEventListener('input', handleSearchInput);
+searchButton.addEventListener('click', handleSearchButtonClick);
+
+// Close search results when clicking outside
+document.addEventListener('click', function(event) {
+  const searchContainer = document.getElementById('search-container');
+  const isClickInsideSearch = searchContainer.contains(event.target);
+  
+  if (!isClickInsideSearch) {
+    searchResults.style.display = 'none';
+  }
+});
+
+// Close search results when window is resized
+window.addEventListener('resize', function() {
+  searchResults.style.display = 'none';
+});
+</script>
+
+
+<!-- search functionality script finish -->
+
+
+<!-- sponsor page hero section  start-->
+
+
+<div class="sponsor_page_hero_section">
+
+<div class="sponsor_page_title">
+
+    <p>Be Special for Someone</p>
+
+</div>
+
+</div>
+
+<!-- sponsor page hero section  stop-->
+
+
+<!-- sponsor student details start -->
+
+<!-- 
+<div class="sponsor_box">
+
+
+<div class="student-card">
+    <img src="img/poor_student.jpg" alt="Student Name" class="student-photo">
+
+    <div class="student-info">
+        <h3>Roksana</h3>
+        <p class="student-age">Age: 10</p>
+        <p class="student-goal">
+            Roksana Begum, 10, lives in a small rural village where resources are limited but creativity flows freely. She wants to take Microsoft 365 course at Brightemy. 
+        </p>
+
+        <div class="student-details">
+            <p><strong>Required:</strong> 10,000 BDT or 60 GBP </p>
+            <p><strong>Location:</strong> Sreemangol, Bangladesh</p>
+        </div>
+
+        <button class="sponsor-btn"> <a href="contact.html"> Sponsor Now </a> </button>
+    </div>
+</div>
+
+
+
+<div class="student-card">
+    <img src="img/jasim.jpg" alt="Student Name" class="student-photo">
+
+    <div class="student-info">
+        <h3>Jiniya </h3>
+        <p class="student-age">Age: 10</p>
+        <p class="student-goal">
+            jiniya Begum, 10, lives in a small rural village where resources are limited but creativity flows freely. She wants to take Microsoft 365 course at Brightemy.
+        </p>
+
+        <div class="student-details">
+            <p><strong>Required:</strong> 10,000 BDT or 60 GBP </p>
+            <p><strong>Location:</strong> Sreemangol, Bangladesh</p>
+        </div>
+
+        <button class="sponsor-btn">  <a href="contact.html"> Sponsor Now </a> </button>
+    </div>
+</div>
+
+
+<div class="student-card">
+    <img src="img/Rakib.webp" alt="Student Name" class="student-photo">
+
+    <div class="student-info">
+        <h3>Rakib Ahmed</h3>
+        <p class="student-age">Age: 10</p>
+        <p class="student-goal">
+            Rakib Ahemed, 10, lives in a small rural village where resources are limited but creativity flows freely. She wants to take Microsoft 365 course at Brightemy.
+        </p>
+
+        <div class="student-details">
+            <p><strong>Required:</strong> 10,000 BDT  or 60 GBP </p>
+            <p><strong>Location:</strong> Sreemangol, Bangladesh</p>
+        </div>
+
+        <button class="sponsor-btn"> <a href="contact.html"> Sponsor Now </a> </button>
+    </div>
+</div>
+
+
+
+
+<div class="student-card">
+    <img src="img/jabed1.avif" alt="Student Name" class="student-photo">
+
+    <div class="student-info">
+        <h3>Jabed</h3>
+        <p class="student-age">Age: 19</p>
+        <p class="student-goal">
+           Jabed Hossain, 10 lives in a small rural village where resources are limited but creativity flows freely. She wants to take Microsoft 365 course at Brightemy.
+        </p>
+
+        <div class="student-details">
+            <p><strong>Required:</strong> 10,000 BDT or 60 GBP </p>
+            <p><strong>Location:</strong> Sreemangol, Bangladesh</p>
+        </div>
+
+        <button class="sponsor-btn"> <a href="contact.html"> Sponsor Now </a> </button>
+    </div>
+</div>
+
+
+</div> -->
+
+<!-- sponsor student details end -->
+
+
+
+<!-- sponsor add section start -->
+
+<div class="spornsor_add">
+
+  <div class="sponsor_add_left">
+
+    <h2>Sponsor a <span class="highlight">Student</span></h2>
+    <div class="underline"></div>
+    <p>Brightemy is seeking your support to help <strong>educate</strong> a student and <em>shape the future</em> of IT professionals. Help a student to complete his course with us and get the oppourtunity to develop new skills.</p>
+    <a href="contact.html" class="sponsor-btn">Become a Sponsor</a>
+
+  </div>
+
+  <div class="sponsor_add_right">
+    <img src="img/sponsor add.png" alt="Student Image">
+  </div>
+
+</div>
+
+
+
+
+<!-- sponsor add section stop -->
+
+
+
+
+<!-- Scroll to top button start-->
+
+<button id="scrollTopBtn" title="Go to top">↑</button>
+
+<!-- Scroll to top button stop -->
+
+<!-- Javascript for Scroll to top button  -->
+
+<script>
+  const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+  window.onscroll = function () {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+      scrollTopBtn.style.display = "block";
+    } else {
+      scrollTopBtn.style.display = "none";
+    }
+  };
+
+  scrollTopBtn.addEventListener("click", function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+</script>
+
+<!-- Javascript for scroll to top button  -->
+
+
+
+
+<!-- footer section start -->
+
+
+<div class="footer_container">
+
+
+
+  <div class="footer_left_container">
+    
+
+    <div> <img src="img/Brightemy Logo.png" alt="Brightemy Logo" class="footer_logo"> </div>
+
+
+    <div>   <p> Brightemy a place of secure and Bright Future. Operating since 2025 in Bangladesh and globally.  </p>  </div>
+
+
+    <div class="social_icons">                        
+      
+    <div class="facebook_icon"> <a href="https://www.facebook.com/people/Brightemy/61578772407411/"> <i class="fab fa-facebook"></i> </a> </div>
+    <div class="linkedin_icon"> <a href="https://www.linkedin.com/company/brightemy">  <i class="fa-brands fa-linkedin-in"></i> </a> </div>
+    <!-- <div class="instagram_icon"> <a href="https://instagram.com/voktis/"> <i class="fab fa-instagram"></i>  </a> </div> -->
+    <!-- <div class="tiktok_icon">  <a href="https://www.facebook.com/voktis/"> <i class="fa-brands fa-tiktok"></i> </a> </div> -->
+    
+    </div>
+
+
+  </div>
+
+
+  <div class="footer_middle_container">
+
+
+
+    <div> <h2> USEFUL LINKS </h2> </div>
+
+    <div class="footer_middle_text"> <p> <a href="index.html"> Home </a> </p></div>
+    <div class="footer_middle_text"> <p> <a href="Courses.html"> Courses </a>  </p></div>
+    <div class="footer_middle_text"> <p> <a href="Partners.html">  Partner </a>  </p></div>
+    <div class="footer_middle_text"> <p> <a href="Sponsor.html">  Sponsor </a>  </p></div>
+    <div class="footer_middle_text"> <p> <a href="About-Brightemy.html">  About </a>  </p></div>
+    <div class="footer_middle_text"> <p> <a href="Contact.html">  Contact </a>  </p></div>
+    <div class="footer_middle_text"> <p>  <a href="Blog.html"> Blog </a>   </p></div>
+    
+  </div>
+
+  <div class="footer_right_container">
+    
+
+    <div> <h2> LEGAL</h2> </div>
+
+    <div class="footer_right_text"> <p>  <a href="Privacy-Policy.html">  Privacy Policy </a>   </p> </div>
+    <div class="footer_right_text"> <p> <a href="Terms-&-conditions.html">  Terms & Conditions </a> </p> </div>
+
+
+  </div>
+
+
+</div>
+
+<div class="copyright_section"> © 2025 Brightemy. All rights reserved. Trading as Voktis Group </div>
+
+<!-- footer section stop -->
+
+
+</body>
+</html>

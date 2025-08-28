@@ -1,0 +1,128 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f0f2f5;
+  margin: 0;
+  padding: 0;
+}
+
+.features {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.features-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 60px;
+  font-weight: 700;
+}
+
+.features-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+/* Individual Feature */
+.feature {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 30px;
+}
+
+.feature.reverse {
+  flex-direction: row-reverse;
+}
+
+.feature-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  transform: translateY(-20px);
+  transition: transform 0.3s ease;
+}
+
+.feature-circle img {
+  width: 40px;
+  height: 40px;
+}
+
+.bg-purple { background: linear-gradient(135deg,#9b5de5,#6a2c70); }
+.bg-blue { background: linear-gradient(135deg,#00bbf9,#0077b6); }
+.bg-orange { background: linear-gradient(135deg,#ff7b00,#ff4500); }
+.bg-green { background: linear-gradient(135deg,#43c6ac,#191654); }
+
+.feature-info {
+  background: #fff;
+  padding: 20px 25px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+  flex: 1;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.feature-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.feature-info p {
+  color: #555;
+}
+
+.feature-panel {
+  position: absolute;
+  right: -150px;
+  width: 350px;
+  border-radius: 15px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.feature.reverse .feature-panel {
+  left: -150px;
+  right: auto;
+}
+
+.feature:hover .feature-circle {
+  transform: translateY(-30px) scale(1.05);
+}
+
+.feature:hover .feature-info {
+  transform: translateY(-10px);
+}
+
+.feature:hover .feature-panel {
+  transform: translateY(-10px) scale(1.03);
+}
+
+/* Responsive */
+@media (max-width: 1024px){
+  .feature-panel {
+    position: static;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .feature.reverse {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px){
+  .features-title {
+    font-size: 2rem;
+  }
+  .feature-info {
+    padding: 15px 20px;
+    border-radius: 15px;
+  }
+}
