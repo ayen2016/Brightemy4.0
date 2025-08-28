@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- title and favicon -->
+
+    <title> Brightemy | Bright Minds Bright Future. Connecting Students</title> 
+    <link rel="icon" type="favicon" href="img/Brightemy-favicon.png">
+    <meta name="description" content="Brightemy offers the best courses for career development. Join us to enhance your skills and achieve your career goals.">
+    <meta name="keywords" content="Brightemy, courses, career development, skills enhancement, online learning, professional growth">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Brightemy Team">
+    <link rel="canonical" href="https://www.brightemy.com/">
+    <meta name="robots" content="index, follow">
+    <meta charset="UTF-8">
+
+<!-- title and favicon -->
+
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+
+ 
+  <!--Google tag for connecting google tag manager start -->
+    
+   <!-- Google tag (gtag.js) -->
+   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EYYN1LETTZ"></script>
+   <script>
+   window.dataLayer = window.dataLayer || [];
+   function gtag(){dataLayer.push(arguments);}
+   gtag('js', new Date());
+
+   gtag('config', 'G-EYYN1LETTZ');
+   </script>
+   
+   <!--Google tag for connecting google tag manager stop -->
+
+
+
+</head>
+<body>
+    
+
+
+<!-- Navbar start -->
+<nav class="navbar">
+    <div class="logo">  
+      <a href="index.html"> <img src="img/Brightemy Logo.png" alt="Brightemy Logo. Brightemy provides students educational support and help them learn valuable skills related to IT."/>  </a>   
+    </div>
+    
+    <!-- Search Container -->
+    <div class="search-container" id="search-container">
+        <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        <button class="search-button" id="search-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </button>
+        <div class="search-results" id="search-results"></div>
+    </div>
+    
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Courses.html">Courses</a></li>
+      <li><a href="Partners.html">Partners</a></li>
+      <li><a href="Sponsor.html">Sponsor</a></li>
+      <li><a href="About-Brightemy.html">About</a></li>
+      <li><a href="Blog.html">Blog</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+</nav>
+<!-- Navbar script finish -->
+
+
+<script>
+  // Hamburger menu functionality
+ const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+  searchResults.style.display = 'none'; // Close search when hamburger is clicked
+});
+
+// Search functionality
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+const searchButton = document.getElementById('search-button');
+
+// Navigation data
+const navData = [
+  { "title": "Home", "link": "index.html" },
+  { "title": "Course", "link": "Courses.html" },
+  { "title": "Partners", "link": "Partners.html" },
+  { "title": "About", "link": "About-Brightemy.html" },
+  { "title": "Blog", "link": "Blog.html" },
+  { "title": "Contact", "link": "Contact.html" },
+  { "title": "Sponsor", "link": "Sponsor.html" },
+  { "title": "Web Development", "link": "Web-Development-Course.html" },
+  { "title": "Cyber Security & Online Safety", "link": "Cyber-Security-&-Online-Saftey-Course.html" },
+  { "title": "Microsoft Office 365", "link": "Microsoft-Office-365-Course.html" },
+  { "title": "Graphic Design", "link": "Graphic-Design-Course.html" },
+  { "title": "Digital Marketing", "link": "Digital-Marketing-Course.html" },
+  { "title": "Video Editing", "link": "Video-Editing-Course.html" },
+  { "title": "Privacy Policy", "link": "Privacy-Policy.html" },
+  { "title": "Terms & Conditions", "link": "Terms-&-Conditions.html" }
+];
+
+
+
+// Function to perform search and return results
+
+
+function getSearchResults(query) {
+  if (query === '') {
+    return [];
+  }
+  
+  return navData.filter(item => 
+    item.title.toLowerCase().includes(query)
+  );
+}
+
+// Function to display search results
+
+function displaySearchResults(results) {
+  if (results.length > 0) {
+    searchResults.innerHTML = results
+      .map(item => `<div class="search-result-item" data-link="${item.link}">${item.title}</div>`)
+      .join('');
+    searchResults.style.display = 'block';
+    
+    // Add click event to search result items
+    document.querySelectorAll('.search-result-item').forEach(item => {
+      item.addEventListener('click', function() {
+        window.location.href = this.getAttribute('data-link');
+      });
+    });
+  } else {
+    searchResults.innerHTML = '<div class="search-result-item">No results found</div>';
+    searchResults.style.display = 'block';
+  }
+}
+
+// Function to handle search input (display results only)
+function handleSearchInput() {
+  const query = searchInput.value.toLowerCase().trim();
+  
+  if (query === '') {
+    searchResults.style.display = 'none';
+    return;
+  }
+  
+  const results = getSearchResults(query);
+  displaySearchResults(results);
+}
+
+// Function to handle search button click (navigate to first result)
+function handleSearchButtonClick() {
+  const query = searchInput.value.toLowerCase().trim();
+  
+  if (query === '') {
+    return;
+  }
+  
+  const results = getSearchResults(query);
+  
+  if (results.length > 0) {
+    // Navigate to the first search result
+    window.location.href = results[0].link;
+  } else {
+    // Display no results message
+    displaySearchResults(results);
+  }
+}
+
+// Event listeners
+searchInput.addEventListener('input', handleSearchInput);
+searchButton.addEventListener('click', handleSearchButtonClick);
+
+// Close search results when clicking outside
+document.addEventListener('click', function(event) {
+  const searchContainer = document.getElementById('search-container');
+  const isClickInsideSearch = searchContainer.contains(event.target);
+  
+  if (!isClickInsideSearch) {
+    searchResults.style.display = 'none';
+  }
+});
+
+// Close search results when window is resized
+window.addEventListener('resize', function() {
+  searchResults.style.display = 'none';
+});
+</script>
+
+
+<!-- search functionality script finish -->
+
+
+<!-- Hero Section start -->
+
+
+<div class="Hero_Section">
+
+    <div class="hero_text">
+        <h1>Welcome to Brightemy</h1>
+        <p>Bright Minds, Bright Future with Brightemy. Discover expert-led courses that help students learn, grow, and succeed. At Brightemy, <br> we guide you in building skills, shaping ideas, and achieving your goals. Join our community today and unlock your true potential.</p>
+        <div class="hero_button"> 
+
+           <button class="hero_button1" onclick="location.href='Courses.html'">Take Course</button>
+           <button class="hero_button2" onclick="location.href='Sponsor.html'">Sponsor Students</button>
+            
+        </div>
+    </div>
+
+    <div class="hero_image">
+        <img class="hero_image1" src="img/hero_section.jpg" alt="Hero Section Image Brightemy.">
+    </div>
+
+</div>
+
+
+<!-- Hero Section stop -->
+
+
+
+<!-- /* Partner Section star */ -->
+
+
+<section class="partners-section">
+
+  <div class="partners-container">
+    <p class="partners-heading">
+     Brightemy is providing educational support to students & is <B>  TRADING AS VOKTIS GROUP </B> which is an IT support service provider in UK, UAE & BD.
+    </p>
+    <ul class="partners-list">
+      <li class="partner-item">
+        <img src="img/voktis group.png" alt="Volkswagen logo" loading="lazy">
+      </li>
+      <li class="partner-item">
+        <img src="img/sixteen foundation.png" alt="Samsung logo" loading="lazy">
+      </li>
+      <li class="partner-item">
+        <img src="img/voktis group.png" alt="Volkswagen logo" loading="lazy">
+      </li>
+      <li class="partner-item">
+        <img src="img/sixteen foundation.png" alt="Samsung logo" loading="lazy">
+      </li>
+      
+
+
+    </ul>
+  </div>
+</section>
+
+
+
+<script>
+  
+  document.addEventListener("DOMContentLoaded", function() {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        } else {
+          entry.target.classList.remove("show"); // reset when out of view
+        }
+      });
+    }, { threshold: 0.2 }); // 20% visible
+
+    document.querySelectorAll(".partners-heading, .partner-item").forEach(el => {
+      observer.observe(el);
+    });
+  });
+
+</script>
+
+
+
+
+<!-- /* Partner Section stop */ -->
+
+
+
+<!-- /* skill section start */ -->
+
+<section class="skill-area">
+  <div class="skill-intro">
+    <h2>Develop your role</h2>
+    <p>
+      We’re here to help you grow your knowledge and skills across multiple fields. Our expert team is committed to delivering the right resources and guidance you need to achieve success.
+    </p>
+  </div>
+
+  <div class="skill-cards">
+    <div class="skill-card">
+      <img src="img/skill_area_element1.png" alt="Practice Driven Learning here a student is getting hands-on learning experience.">
+      <h3>Practice-Driven Learning</h3>
+      <p>Gain practical exposure through real IT projects, giving you the edge to stand out in a competitive career landscape.</p>
+    </div>
+
+    <div class="skill-card">
+      <img src="img/skill_area_element2.png" alt="Structured Curriculum is maintained by tutors to provide best quality education.">
+      <h3>Structured Curriculum</h3>
+      <p>Stay ahead in the IT world with our curriculum that’s constantly updated to reflect the latest industry trends and technologies.</p>
+    </div>
+
+    <div class="skill-card">
+      <img src="img/skill_area_element3.png" alt="At Brightemy we provide top quality mentorship and guidance to our students so that learning became easy for them.">
+      <h3>Mentorship & Guidance</h3>
+      <p>Receive personalised mentorship and career guidance from industry veterans to navigate your path in the dynamic IT landscape.</p>
+    </div>
+  </div>
+
+  <div class="skill-cta">
+    <h2>Transform Your IT Career with our Real-Life Work Development Program</h2>
+    <p>
+      Our unique 3-month program is designed to help learners build essential skills and knowledge for the future. With flexible learning options, Brightemy offers a structured experience that blends practical activities with core concepts, empowering you to grow, gain confidence, and achieve long-term success.
+    </p>
+    
+    
+    
+   <button class="cta-button" onclick="location.href='Courses.html'">Courses</button>
+
+
+
+
+  </div>
+</section>
+
+<!-- /* skill section stop */ -->
+
+<!-- Comprehensive onboarding process start -->
+
+
+<div class="comprehensive_onboarding_process">
+
+<div class="onboarding_left_container">
+
+
+<div class="onboarding_left_container_first_div">
+
+  <div> <h2>Comprehensive Onboarding Process</h2> </div>
+  <div>  <p>SUPPORTING ALL THE WAY</p> </div>
+  <div> <p>A smooth transition into the IT world with an all-inclusive onboarding experience. Gain hands-on experience with our Hybrid (Online & Office) learning approach.</p> </div>
+</div>
+
+<div class="onboarding_left_container_snd_div">
+
+ <div class="onboarding_snd_1st">
+
+ <div>
+  <img src="img/comprehensivie one.png" alt="Expert Lead Training" >
+ </div>
+
+ <div>
+
+  <h3> Expert-Led Training </h3>
+  <p>Learn from professionals in IT, Engineering, HR & Marketing through shadowing and interactive sessions.</p>
+
+ </div>
+
+ </div>
+
+ <div class="onboarding_snd_2nd">
+
+ <div>
+  <img src="img/comprehensivie second.png" alt="Practical Skills Development" >
+ </div>
+
+ <div>
+
+  <h3> Practical Skills Development</h3>
+  <p>Master essential IT skills, including workstation builds, call practices and Active Directory management.</p>
+
+ </div>
+
+ </div>
+
+  
+</div>
+
+  <div class="onboarding_left_container_third_div">
+
+
+</div>
+
+</div>
+
+
+  <div class="onboarding_right_container">
+
+  <img src="img/comprehensive onboarding 2.png" alt="Our teaching approach is Comprehensive focusing on Expert-Led Training and Practical Skills Development." >
+  
+</div>
+
+</div>
+
+
+<!-- Comprehensive onboarding process stop -->
+
+
+<!-- sponsor featuring section start -->
+
+<section class="sponsor-section">
+  <div class="sponsor-text">
+    <h2>Sponsor a Dream</h2>
+    
+    <h3>Empower a Child's Future at  100 GBP or 16000 Taka only</h3>
+    <p>
+      Every child deserves the chance to dream, learn, and thrive. By sponsoring a child,
+      you help provide education and hope for a brighter future. Your support
+      can transform lives and communities. Help a children who can register a course with Brightemy through your support. 
+    </p>
+
+    <button class="sponsor-button" onclick="location.href='Sponsor.html'">Sponsor Someone</button>
+
+
+  </div>
+ 
+  <div class="abstract-image">
+    <div class="abstract-shape">
+      
+    </div>
+  </div>
+</section>
+ 
+
+<!-- sponsor featuring section start -->
+
+
+<!-- student feedback section start -->
+<div class="testimonials-section">
+  <div class="section-header">
+    <h2>What Our Students Say</h2>
+    <div class="header-decoration"></div>
+  </div>
+  
+  <div class="testimonials-container">
+    <div class="testimonial-card">
+      <div class="quote-icon">❝</div>
+      <p class="testimonial-text">"Gathering real world graphic design experience means a lot to me. I never thought I would get the opportunities to work on real-project under the mentorship of Brightemy."</p>
+      <div class="testimonial-author">
+        <img src="img/Sadikur.jpg" alt="Sadik">
+        <div class="author-info">
+          <h4>Sadikur Rahman</h4>
+          <span>Former Student at Brightemy</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="testimonial-card">
+      <div class="quote-icon">❝</div>
+      <p class="testimonial-text">"It was an amazing experience for me. Brightemy helped me to become a true Social Media Manager. Now I operate multiple social media accounts for Businesses."</p>
+      <div class="testimonial-author">
+        <img src="img/Hamim.jpg" alt="Michael Chen">
+        <div class="author-info">
+          <h4>Mohammad Hamim</h4>
+          <span>Former Student at Brightemy</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="testimonial-card">
+      <div class="quote-icon">❝</div>
+      <p class="testimonial-text">"Well, through Brightemy I learned how to manage client and leads that drive your business to next level. Now I have more command over lead generation."</p>
+      <div class="testimonial-author">
+        <img src="img/Satyam picture.jpg" alt="Emily Davis">
+        <div class="author-info">
+          <h4>Satyam Shome</h4>
+          <span>Former Student at Brightemy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- student feedback section stop -->
+
+
+
+<!--Blog feature section start -->
+
+
+<section class="blog-sec">
+  <div class="blog-header">
+    <h2>Latest Blogs</h2>
+  </div>
+
+  <div class="blog-grid">
+    <!-- Blog Card 1 -->
+    <div class="blog-card">
+      <div class="blog-img" style="background-image:url('https://www.smartdesc.co.uk/wp-content/uploads/2025/06/dfy-n3QfdHa2EE8-unsplash-scaled-e1750860601802-650x374.jpg');"></div>
+      
+      <div class="blog-meta">
+        Blog, Expertise, IT Strategy
+      </div>
+      
+      <h4 class="blog-title">Smartdesc Newsletter: Key trends from Charity Tech Report, managing volunteers’ devices & more</h4>
+      
+      <div class="blog-date">June 26, 2025</div>
+      
+      <button class="blog_button"><a href="Blog.html">Read More</a></button>
+    </div>
+
+    <!-- Blog Card 2 -->
+    <div class="blog-card">
+      <div class="blog-img" style="background-image:url('https://www.smartdesc.co.uk/wp-content/uploads/2025/07/growtika-ahgsuFHlIFo-unsplash-scaled-e1753778644300-650x317.jpg');"></div>
+      
+      <div class="blog-meta">
+        Blog, Microsoft, Office 365
+      </div>
+      
+      <h4 class="blog-title">Smartdesc Newsletter: Microsoft 365 security webinar, migrating to Windows 11 & more</h4>
+      
+      <div class="blog-date">July 29, 2025</div>
+      
+      <button class="blog_button"><a href="Blog.html">Read More</a></button>
+    </div>
+
+    <!-- Blog Card 3 -->
+    <div class="blog-card">
+      <div class="blog-img" style="background-image:url('https://www.smartdesc.co.uk/wp-content/uploads/2025/07/growtika-ahgsuFHlIFo-unsplash-scaled-e1753778644300-650x317.jpg');"></div>
+      
+      <div class="blog-meta">
+        Blog, Microsoft, Office 365
+      </div>
+      
+      <h4 class="blog-title">Smartdesc Newsletter: Microsoft 365 security webinar, migrating to Windows 11 & more</h4>
+      
+      <div class="blog-date">July 29, 2025</div>
+      
+      <button class="blog_button"><a href="Blog.html">Read More</a></button>
+    </div>
+
+
+  </div>
+</section>
+
+
+
+<!--Blog feature section stop-->
+
+
+<!-- Scroll to top button start-->
+
+<button id="scrollTopBtn" title="Go to top">↑</button>
+
+<!-- Scroll to top button stop -->
+
+<!-- Javascript for Scroll to top button  -->
+
+<script>
+  const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+  window.onscroll = function () {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+      scrollTopBtn.style.display = "block";
+    } else {
+      scrollTopBtn.style.display = "none";
+    }
+  };
+
+  scrollTopBtn.addEventListener("click", function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+</script>
+
+<!-- Javascript for scroll to top button  -->
+
+<!-- footer section start -->
+
+
+<div class="footer_container">
+
+
+
+  <div class="footer_left_container">
+    
+
+    <div> <img src="img/Brightemy Logo.png" alt="Brightemy Logo" class="footer_logo"> </div>
+
+
+    <div>   <p> Brightemy a place of secure and Bright Future. Operating since 2025 in Bangladesh and globally.  </p>  </div>
+
+
+    <div class="social_icons">                        
+      
+    <div class="facebook_icon"> <a href="https://www.facebook.com/people/Brightemy/61578772407411/"> <i class="fab fa-facebook"></i> </a> </div>
+    <div class="linkedin_icon"> <a href="https://www.linkedin.com/company/brightemy">  <i class="fa-brands fa-linkedin-in"></i> </a> </div>
+    <!-- <div class="instagram_icon"> <a href="https://instagram.com/voktis/"> <i class="fab fa-instagram"></i>  </a> </div> -->
+    <!-- <div class="tiktok_icon">  <a href="https://www.facebook.com/voktis/"> <i class="fa-brands fa-tiktok"></i> </a> </div> -->
+    
+    </div>
+
+
+  </div>
+
+
+  <div class="footer_middle_container">
+
+
+
+    <div> <h2> USEFUL LINKS </h2> </div>
+
+    <div class="footer_middle_text"> <p> <a href="index.html"> Home </a> </p></div>
+    <div class="footer_middle_text"> <p> <a href="Courses.html"> Courses </a>  </p></div>
+    <div class="footer_middle_text"> <p> <a href="Partners.html">  Partner </a>  </p></div>
+    <div class="footer_middle_text"> <p> <a href="Sponsor.html">  Sponsor </a>  </p></div>
+    <div class="footer_middle_text"> <p> <a href="About-Brightemy.html">  About </a>  </p></div>
+    <div class="footer_middle_text"> <p> <a href="Contact.html">  Contact </a>  </p></div>
+    <div class="footer_middle_text"> <p>  <a href="Blog.html"> Blog </a>   </p></div>
+    
+  </div>
+
+  <div class="footer_right_container">
+    
+
+    <div> <h2> LEGAL</h2> </div>
+
+    <div class="footer_right_text"> <p>  <a href="Privacy-Policy.html">  Privacy Policy </a>   </p> </div>
+    <div class="footer_right_text"> <p> <a href="Terms-&-conditions.html">  Terms & Conditions </a> </p> </div>
+
+
+  </div>
+
+
+</div>
+
+<div class="copyright_section"> © 2025 Brightemy. All rights reserved. Trading as Voktis Group </div>
+
+<!-- footer section stop -->
+
+
+</body>
+</html>
