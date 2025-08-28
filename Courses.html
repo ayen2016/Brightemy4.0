@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- title and favicon -->
+
+    <title>Brightemy | Best Courses for career development.</title> 
+
+    <link rel="icon" type="favicon" href="img/Brightemy-favicon.png">
+    <meta name="description" content="Brightemy offers career-focused courses in Cybersecurity, Microsoft Office 365, Graphic Design, Video Editing, Web Development & Digital Marketing Course to help you build skills & achieve your goals.">
+    <meta name="keywords" content="career development courses, online learning platform, Cybersecurity training course, Microsoft Office 365 course, Graphic design course online, Canva and Photoshop training, Web development basics course, HTML, css, Digital Marketing, SEO, Social media management, Video Editing, Adobe premier pro , Adobe After Effects, Blander, professional skill development, online career courses, Brightemy courses">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Brightemy Team">
+    <link rel="canonical" href="https://www.brightemy.com/">
+    <meta name="robots" content="index, follow">
+    <meta charset="UTF-8">
+
+
+<!-- title and favicon -->
+    
+
+    <link rel="stylesheet" href="course.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+
+ 
+  <!--Google tag for connecting google tag manager start -->
+    
+   <!-- Google tag (gtag.js) -->
+   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EYYN1LETTZ"></script>
+   <script>
+   window.dataLayer = window.dataLayer || [];
+   function gtag(){dataLayer.push(arguments);}
+   gtag('js', new Date());
+
+   gtag('config', 'G-EYYN1LETTZ');
+   </script>
+   
+   <!--Google tag for connecting google tag manager stop -->
+
+
+</head>
+<body>
+    
+
+<!-- Navbar start -->
+
+<nav class="navbar">
+    <div class="logo">  
+      <a href="index.html"> <img src="img/Brightemy Logo.png" alt="Brightemy Logo. Brightemy provides students educational support and help them learn valuable skills related to IT."/>  </a>   
+    </div>
+    
+    <!-- Search Container -->
+    <div class="search-container" id="search-container">
+        <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        <button class="search-button" id="search-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </button>
+        <div class="search-results" id="search-results"></div>
+    </div>
+    
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Courses.html">Courses</a></li>
+      <li><a href="Partners.html">Partners</a></li>
+      <li><a href="Sponsor.html">Sponsor</a></li>
+      <li><a href="About-Brightemy.html">About</a></li>
+      <li><a href="Blog.html">Blog</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+</nav>
+<!-- Navbar script finish -->
+
+<script>
+  // Hamburger menu functionality
+ const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+  searchResults.style.display = 'none'; // Close search when hamburger is clicked
+});
+
+// Search functionality
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+const searchButton = document.getElementById('search-button');
+
+// Navigation data
+const navData = [
+  { "title": "Home", "link": "index.html" },
+  { "title": "Course", "link": "Courses.html" },
+  { "title": "Partners", "link": "Partners.html" },
+  { "title": "About", "link": "About-Brightemy.html" },
+  { "title": "Blog", "link": "Blog.html" },
+  { "title": "Contact", "link": "Contact.html" },
+  { "title": "Sponsor", "link": "Sponsor.html" },
+  { "title": "Web Development", "link": "Web-Development-Course.html" },
+  { "title": "Cyber Security & Online Safety", "link": "Cyber-Security-&-Online-Saftey-Course.html" },
+  { "title": "Microsoft Office 365", "link": "Microsoft-Office-365-Course.html" },
+  { "title": "Graphic Design", "link": "Graphic-Design-Course.html" },
+  { "title": "Digital Marketing", "link": "Digital-Marketing-Course.html" },
+  { "title": "Video Editing", "link": "Video-Editing-Course.html" },
+  { "title": "Privacy Policy", "link": "Privacy-Policy.html" },
+  { "title": "Terms & Conditions", "link": "Terms-&-Conditions.html" }
+];
+
+// Function to perform search and return results
+function getSearchResults(query) {
+  if (query === '') {
+    return [];
+  }
+  
+  return navData.filter(item => 
+    item.title.toLowerCase().includes(query)
+  );
+}
+
+// Function to display search results
+function displaySearchResults(results) {
+  if (results.length > 0) {
+    searchResults.innerHTML = results
+      .map(item => `<div class="search-result-item" data-link="${item.link}">${item.title}</div>`)
+      .join('');
+    searchResults.style.display = 'block';
+    
+    // Add click event to search result items
+    document.querySelectorAll('.search-result-item').forEach(item => {
+      item.addEventListener('click', function() {
+        window.location.href = this.getAttribute('data-link');
+      });
+    });
+  } else {
+    searchResults.innerHTML = '<div class="search-result-item">No results found</div>';
+    searchResults.style.display = 'block';
+  }
+}
+
+// Function to handle search input (display results only)
+function handleSearchInput() {
+  const query = searchInput.value.toLowerCase().trim();
+  
+  if (query === '') {
+    searchResults.style.display = 'none';
+    return;
+  }
+  
+  const results = getSearchResults(query);
+  displaySearchResults(results);
+}
+
+// Function to handle search button click (navigate to first result)
+function handleSearchButtonClick() {
+  const query = searchInput.value.toLowerCase().trim();
+  
+  if (query === '') {
+    return;
+  }
+  
+  const results = getSearchResults(query);
+  
+  if (results.length > 0) {
+    // Navigate to the first search result
+    window.location.href = results[0].link;
+  } else {
+    // Display no results message
+    displaySearchResults(results);
+  }
+}
+
+// Event listeners
+searchInput.addEventListener('input', handleSearchInput);
+searchButton.addEventListener('click', handleSearchButtonClick);
+
+// Close search results when clicking outside
+document.addEventListener('click', function(event) {
+  const searchContainer = document.getElementById('search-container');
+  const isClickInsideSearch = searchContainer.contains(event.target);
+  
+  if (!isClickInsideSearch) {
+    searchResults.style.display = 'none';
+  }
+});
+
+// Close search results when window is resized
+window.addEventListener('resize', function() {
+  searchResults.style.display = 'none';
+});
+</script>
+
+
+<!-- search functionality script finish -->
+
+<!-- Navbar script finish -->
+
+
+<!-- course page hero section  start-->
+
+
+<div class="course_page_hero_section">
+
+<div class="course_page_title">
+
+    <p>Brightemy Courses</p>
+
+</div>
+
+</div>
+
+<!-- course page hero section  stop-->
+
+
+<!-- course marqee offers start -->
+
+
+<div class="course-offers-marquee">
+  <div class="marquee-content">
+    
+    Bright Minds Bright Future! &nbsp;&nbsp; At Brightemy We help students to get hands-on learning experience.  &nbsp;&nbsp; Take course at Brightemy and unlock your potential with us.
+
+  </div>
+</div>
+
+
+<!-- course marquee offer stop -->
+
+<!-- our popular course start -->
+
+
+
+<section class="course-collection" aria-label="Course Collection">
+
+  <section id="course_card"></section>
+
+  <div class="course-header">
+    <h2>Our Popular Courses</h2>
+    <p>Explore our in-demand courses designed to boost your skills.</p>
+  </div>
+
+  <ul class="course-list">
+
+    <!-- Cyber security course  -->
+    <li class="course-card">
+      <div class="course-card-inner">
+        <div class="course-image-container">
+          <img src="img/Cyber Security and Online Safety Course.jpeg" alt="Cyber Security and Online Safety Course Image" />
+        </div>
+        <div class="course-content">
+          <div class="partner-info">
+            <img src="img/Satyam picture.jpg" alt="Cyber Security and Online Safety Course mentor image" class="partner-logo" />
+            <span>Digital Safety</span>
+          </div>
+          <!-- <a href="#" class="course-title-link"> -->
+            <h3 class="course-title">Cybersecurity & Online Safety</h3>
+          </a>
+          <p class="course-type">Professional Certificate</p>
+        <button class="register-btn" type="button" onclick="location.href='Cyber-Security-&-Online-Saftey-Course.html'"> Learn More </button>
+
+        </div>
+      </div>
+    </li>
+
+    
+    <!-- Development Course -->
+    <li class="course-card">
+      <div class="course-card-inner">
+        <div class="course-image-container">
+          <img src="img/Webdevelopment.png" alt="Development Course Image" />
+        </div>
+        <div class="course-content">
+          <div class="partner-info">
+            <img src="img/Bidyut 2.jpg" alt="Development Partner Logo" class="partner-logo" />
+            <span>Development foundation</span>
+          </div>
+          <!-- <a href="#" class="course-title-link"> -->
+            <h3 class="course-title">Web Development Basic </h3>
+          </a>
+          <p class="course-type">Professional Certificate</p>
+          
+          
+     <button class="register-btn" type="button" onclick="location.href='Web-Development-Course.html'"> Learn More </button>
+
+        </div>
+      </div>
+    </li>
+
+    <!-- Marketing Course -->
+    <li class="course-card">
+      <div class="course-card-inner">
+        <div class="course-image-container">
+          <img src="img/Microsoft Office 365 Course (2).jpeg" alt="Microsoft Office 365 Course Image" />
+        </div>
+        <div class="course-content">
+          <div class="partner-info">
+            <img src="img/Abu Taher 2.jpg" alt="Marketing Partner Logo" class="partner-logo" />
+            <span>Learn Microsoft office</span>
+          </div>
+          <!-- <a href="#" class="course-title-link"> -->
+            <h3 class="course-title"> Microsoft Office 365 </h3>
+          </a>
+          <p class="course-type">Professional Certificate</p>
+         <button class="register-btn" type="button" onclick="location.href='Microsoft-Office-365-Course.html'"> Learn More </button>
+        </div>
+      </div>
+    </li>
+
+    <!-- Graphic Design Course -->
+    <li class="course-card">
+      <div class="course-card-inner">
+        <div class="course-image-container">
+          <img src="img/Graphic Design Course.jpeg" alt="Graphic Design Course Image" />
+        </div>
+        <div class="course-content">
+          <div class="partner-info">
+            <img src="img/Abdur Rahman 2.jpg" alt="Graphic Design Course Mentor image" class="partner-logo" />
+            <span>Learn tools Canva & Photoshop</span>
+          </div>
+          <!-- <a href="#" class="course-title-link"> -->
+            <h3 class="course-title">Graphic Design </h3>
+          </a>
+          <p class="course-type">Professional Certificate</p>
+          <button class="register-btn" type="button" onclick="location.href='Graphic-Design-Course.html'"> Learn More </button>
+        </div>
+      </div>
+    </li>
+
+
+    
+    <!-- Graphic Design Course -->
+    <li class="course-card">
+      <div class="course-card-inner">
+        <div class="course-image-container">
+          <img src="img/Video Editing Pro.jpeg" alt="Graphic Design Course Image" />
+        </div>
+        <div class="course-content">
+          <div class="partner-info">
+            <img src="img/Sadikur.jpg" alt="Graphic Design Course Mentor image" class="partner-logo" />
+            <span>Video Editing Pro</span>
+          </div>
+          <!-- <a href="#" class="course-title-link"> -->
+            <h3 class="course-title">Video Editing </h3>
+          </a>
+          <p class="course-type">Professional Certificate</p>
+          <button class="register-btn" type="button" onclick="location.href='Video-Editing-Course.html'">Learn More </button>
+        </div>
+      </div>
+    </li>
+
+    
+    <!-- Graphic Design Course -->
+    <li class="course-card">
+      <div class="course-card-inner">
+        <div class="course-image-container">
+          <img src="img/Digital  Marketing.jpeg" alt="Graphic Design Course Image" />
+        </div>
+        <div class="course-content">
+          <div class="partner-info">
+            <img src="img/Masum.jpg" alt="Graphic Design Course Mentor image" class="partner-logo" />
+            <span>Digital Marketing</span>
+          </div>
+          <!-- <a href="#" class="course-title-link"> -->
+            <h3 class="course-title">Digital Marketing </h3>
+          </a>
+          <p class="course-type">Professional Certificate</p>
+          <button class="register-btn" type="button" onclick="location.href='Digital-Marketing-Course.html'"> Learn More </button>
+        </div>
+      </div>
+    </li>
+
+
+
+
+
+
+  </ul>
+</section>
+
+<!-- our popular course stop-->
+
+
+
+<!-- image gallery start -->
+
+
+<section class="gallery-section">
+  <div class="container">
+    <h2 class="gallery-title">Student Learning</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="img/Student Learning 3.jpeg" alt="Work 1">
+      </div>
+      <div class="gallery-item">
+        <img src="img/student learing (2).png" alt="Work 2">
+      </div>
+      <div class="gallery-item">
+        <img src="img/student learing (3).png" alt="Work 3">
+      </div>
+      <div class="gallery-item">
+        <img src="img/student learing (4).png" alt="Work 4">
+      </div>
+      <div class="gallery-item">
+        <img src="img/Student Learning  (1).jpeg" alt="Work 5">
+      </div>
+      <div class="gallery-item">
+        <img src="img/Student Learning  (2).jpeg" alt="Work 6">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- image gallery stop -->
+
+
+
+
+<!-- Scroll to top button start-->
+
+<button id="scrollTopBtn" title="Go to top">↑</button>
+
+<!-- Scroll to top button stop -->
+
+<!-- Javascript for Scroll to top button  -->
+
+<script>
+  const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+  window.onscroll = function () {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+      scrollTopBtn.style.display = "block";
+    } else {
+      scrollTopBtn.style.display = "none";
+    }
+  };
+
+  scrollTopBtn.addEventListener("click", function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+</script>
+
+<!-- Javascript for scroll to top button  -->
+
+
+<!-- footer section start -->
+
+<div class="footer_container">
+
+  <div class="footer_left_container">
+    
+
+    <div> <img src="img/Brightemy Logo.png" alt="Brightemy Logo" class="footer_logo"> </div>
+
+
+    <div>   <p> Brightemy a place of secure and Bright Future. Operating since 2025 in Bangladesh and globally.  </p>  </div>
+
+
+    <div class="social_icons">                        
+      
+    <div class="facebook_icon"> <a href="https://www.facebook.com/people/Brightemy/61578772407411/"> <i class="fab fa-facebook"></i> </a> </div>
+    <div class="linkedin_icon"> <a href="https://www.linkedin.com/company/brightemy">  <i class="fa-brands fa-linkedin-in"></i> </a> </div>
+    <!-- <div class="instagram_icon"> <a href="https://instagram.com/voktis/"> <i class="fab fa-instagram"></i>  </a> </div> -->
+    <!-- <div class="tiktok_icon">  <a href="https://www.facebook.com/voktis/"> <i class="fa-brands fa-tiktok"></i> </a> </div> -->
+    
+    </div>
+
+
+  </div>
+
+
+  <div class="footer_middle_container">
+
+
+    <div> <h2> USEFUL LINKS </h2> </div>
+
+    <div class="footer_middle_text"> <p> <a href="index.html"> Home </a> </p></div>
+    <div class="footer_middle_text"> <p> <a href="Courses.html"> Courses </a>  </p></div>
+    <div class="footer_middle_text"> <p> <a href="Partners.html">  Partner </a>  </p></div>
+    <div class="footer_middle_text"> <p> <a href="Sponsor.html">  Sponsor </a>  </p></div>
+    <div class="footer_middle_text"> <p> <a href="About-Brightemy.html">  About </a>  </p></div>
+    <div class="footer_middle_text"> <p> <a href="Contact.html">  Contact </a>  </p></div>
+    <div class="footer_middle_text"> <p>  <a href="Blog.html"> Blog </a>   </p></div>
+    
+    
+  </div>
+
+  <div class="footer_right_container">
+    
+
+    <div> <h2> LEGAL</h2> </div>
+
+    <div class="footer_right_text"> <p>  <a href="Privacy-Policy.html">  Privacy Policy </a>   </p> </div>
+    <div class="footer_right_text"> <p> <a href="Terms-&-conditions.html">  Terms & Conditions </a> </p> </div>
+
+
+  </div>
+
+
+</div>
+
+<div class="copyright_section"> © 2025 Brightemy. All rights reserved. Trading as Voktis Group </div>
+
+<!-- footer section stop -->
+
+
+</body>
+</html>
+
+
